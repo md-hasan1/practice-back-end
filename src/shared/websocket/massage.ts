@@ -1,3 +1,4 @@
+import { CloudFormation } from "aws-sdk";
 import { Server } from "http";
 import { json } from "stream/consumers";
 import WebSocket  from "ws"
@@ -8,24 +9,28 @@ import WebSocket  from "ws"
 export  const initializeWebSocketServer = (server:Server) => {
   const wss = new WebSocket.Server({ server });
 
+  const onlineUsers =  []
   console.log("WebSocket server initialized");
 
   // Handle new connections
-  wss.on("connection", (ws, req) => {
-    console.log("New client connected");
+  wss.on("connection", (ws) => {
+   
 
     // Send a welcome message to the client
     ws.send(JSON.stringify({ message: "Welcome to the WebSocket server!" }));
 
     // Handle messages from the client
-    ws.on("message", (message) => {
-        const decodedMessage = message.toString();
+    ws.on("message", (data) => {
+     
+        const decodedMessage = data.toString();
         const parsedMessage = JSON.parse(decodedMessage);
-      
-  
-
+        
+        
+        // const{senderId,receiverId,type,message}=parsedMessage
+   onlineUsers.push({user:parsedMessage.senderId,isOnline:true})
       // Example: Echo the message back to the client
-      ws.send(JSON.stringify(parsedMessage.data));
+      ws.send(JSON.stringify(parsedMessage));
+      
     });
 
     // Handle connection closure

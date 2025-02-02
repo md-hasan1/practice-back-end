@@ -10,6 +10,8 @@ import config from "../../../config";
 import httpStatus from "http-status";
 import { Request } from "express";
 import { fileUploader } from "../../../helpars/fileUploader";
+import { jwtHelpers } from "../../../helpars/jwtHelpers";
+import { Secret } from "jsonwebtoken";
 
 // Create a new user in the database.
 const createUserIntoDb = async (payload: User) => {
@@ -49,7 +51,18 @@ const createUserIntoDb = async (payload: User) => {
     },
   });
 
-  return result;
+   const accessToken = jwtHelpers.generateToken(
+      {
+        id: result.id,
+        email: result.email,
+        role: result.role,
+      },
+      config.jwt.jwt_secret as Secret,
+      config.jwt.expires_in as string
+    );
+  
+
+  return {accessToken,result};
 };
 
 // reterive all users from the database also searcing anf filetering
