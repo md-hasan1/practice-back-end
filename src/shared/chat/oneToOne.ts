@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // A map to track connected users and their socket instances
 const userSockets = new Map();
 console.log({userSockets})
-const oneToOne = (socket: Socket, io: Server) => {
+const oneToOne = (socket: Socket) => {
   // Store the user's socket connection on login
   //   socket.on("user_connected", (userId: string) => {
   //     userSockets.set(userId, socket);

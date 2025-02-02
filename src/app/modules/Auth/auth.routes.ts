@@ -19,7 +19,7 @@ router.post(
 router.post("/logout", AuthController.logoutUser);
 
 router.get(
-  "/profile",
+  "/get-me",
   auth(UserRole.ADMIN, UserRole.USER),
   AuthController.getMyProfile
 );
