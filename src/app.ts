@@ -5,8 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import GlobalErrorHandler from "./app/middlewares/globalErrorHandler";
 import router from "./app/routes";
-
-
+import { mistralai } from "./shared/mistralai/mistralai";
 
 const app: Application = express();
 export const corsOptions = {
@@ -26,7 +25,7 @@ app.use(express.static("public"));
 // Route handler for root endpoint
 app.get("/", (req: Request, res: Response) => {
   res.send({
-    success:true,
+    success: true,
     statusCode: httpStatus.OK,
     message: "The server is running!",
   });
@@ -51,3 +50,13 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 export default app;
+
+// mistralai()
+
+
+
+
+
+console.log(navigator.userAgent);
+console.log(navigator.onLine);
+console.log(navigator.onLine ? "Online" : "Offline");

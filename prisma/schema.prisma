@@ -16,6 +16,11 @@ model User {
   email         String     @unique
   profileImage  String?
   expirationOtp DateTime?
+  customerId String?
+  subscriptionId String?
+  isPayment Boolean @default(false)
+  priceId String?
+  planName String?
   otp           Int?
   password      String
   role          UserRole   @default(USER)
@@ -24,6 +29,43 @@ model User {
   updatedAt     DateTime   @updatedAt
 
   @@map("Users")
+}
+
+
+model Price {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  amount        Float
+  name          String
+  priceId       String
+  productId     String
+  features      Json
+  description   String?
+  currency      String
+  interval      String
+  active        Boolean
+  intervalCount Int
+  freeTrailDays Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("prices")
+}
+
+model PaymentInfo {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  userEmail          String?
+  subscriptionPlane  String?
+  subscriptionId     String?
+  date               DateTime?
+  amount             Float?
+  tranId             String?
+  status             String?
+  hosted_invoice_url String?
+  invoice_pdf        String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@map("paymentInfos")
 }
 
 model Chat{
