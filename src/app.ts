@@ -36,7 +36,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use(catchAsync(async (req,res)=>{
   console.log("Hello Hasan!");
-  //throw new ApiError(httpStatus.FORBIDDEN, "This is a forbidden error!");
+  throw new ApiError(httpStatus.FORBIDDEN, "This is a forbidden error!");
 }))
 // Router setup
 app.use("/api/v1", router);
@@ -46,10 +46,11 @@ app.use("/api/v1", router);
 // Error handling middleware
 app.use(GlobalErrorHandler);
 import cron from 'node-cron';
+import { pushErrorLog } from "./shared/pushError";
 
 cron.schedule('* * * * *', () => {
   console.log(`[${new Date().toISOString()}] 🛠️ CRON JOB RUNNING EVERY MINUTE!`);
-  // Your logic here
+  pushErrorLog()
 });
 
 
