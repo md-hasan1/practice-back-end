@@ -26,3 +26,31 @@ Stack: Error: This is a forbidden error!
     at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
     at new Promise (<anonymous>)
 
+[2025-04-06T12:03:51.359Z] 403 - GET /favicon.ico - This is a forbidden error!
+User: Unauthenticated
+Stack: Error: This is a forbidden error!
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:39:9
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:37:37
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at new Promise (<anonymous>)
+
+[2025-04-06T12:04:01.773Z] 403 - GET /favicon.ico - This is a forbidden error!
+User: Unauthenticated
+Stack: Error: This is a forbidden error!
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:39:9
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:37:37
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at new Promise (<anonymous>)
+
