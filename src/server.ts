@@ -6,17 +6,25 @@ import prisma from "./shared/prisma";
 import app from "./app";
 import oneToOne from "./shared/chat/oneToOne";
 import { initializeWebSocketServer } from "./shared/websocket/massage";
+import { runSerialRequests } from "./shared/capacityTest";
+// import { run } from "./shared/makeRequest2";
+import { makeRequest } from "./shared/makeRequest";
+import { run } from "./shared/test";
+import { getGroqChatCompletion } from "./shared/groq.ai/test";
+import { googleGeminis } from "./shared/gemini/gemini.ai";
+import { setupWebSocket } from "./shared/websocket/websocketSetUp";
+
 
 
 let server: Server;
 let io: SocketIOServer;
 
 async function startServer() {
-  server = app.listen(config.port, () => {
+  server = app.listen(config.port,async () => {
     console.log("Server is listening on port ", config.port);
+setupWebSocket(server);
   });
 
- 
   io = new SocketIOServer(server, {
     cors: {
       origin: "*", // Replace with your frontend's origin for better security
@@ -24,7 +32,7 @@ async function startServer() {
     },
   });
 
-initializeWebSocketServer(server)
+  // initializeWebSocketServer(server);
   // Handle Socket.IO connections
   // io.on("connection", async(socket) => {
   //   console.log("A user connected: ", socket.id);

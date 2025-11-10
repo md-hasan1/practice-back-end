@@ -54,3 +54,31 @@ Stack: Error: This is a forbidden error!
     at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
     at new Promise (<anonymous>)
 
+[2025-06-28T12:07:31.847Z] 403 - POST /api/v1/users/register - This is a forbidden error!
+User: Unauthenticated
+Stack: Error: This is a forbidden error!
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:38:11
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:36:33
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at new Promise (<anonymous>)
+
+[2025-06-28T12:08:21.266Z] 403 - POST /api/v1/users/register - This is a forbidden error!
+User: Unauthenticated
+Stack: Error: This is a forbidden error!
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:38:11
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:36:33
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at Generator.next (<anonymous>)
+    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at new Promise (<anonymous>)
+

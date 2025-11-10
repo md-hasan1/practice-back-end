@@ -4,12 +4,25 @@
     {
       "src": "dist/server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "api/cron-task.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/cron-task",
+      "dest": "api/cron-task.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "dist/server.js"
     }
-  ]
+  ],
+  "functions": {
+    "api/cron-task.js": {
+      "schedule": "*/5 * * * *"
+    }
+  }
 }

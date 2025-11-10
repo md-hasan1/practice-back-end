@@ -10,27 +10,32 @@ datasource db {
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  username      String?   
-  fullName      String?
-  dob           DateTime?
-  email         String     @unique
-  profileImage  String?
-  expirationOtp DateTime?
-  customerId String?
-  subscriptionId String?
-  isPayment Boolean @default(false)
-  priceId String?
-  planName String?
-  otp           Int?
-  password      String
-  role          UserRole   @default(USER)
-  status        UserStatus @default(ACTIVE)
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  username        String?
+  fullName        String?
+  dob             DateTime?
+  email           String            @unique
+  profileImage    String?
+  expirationOtp   DateTime?
+  customerId      String?
+  subscriptionId  String?
+  isPayment       Boolean           @default(false)
+  priceId         String?
+  planName        String?
+  otp             Int?
+  password        String
+  role            UserRole          @default(USER)
+  status          UserStatus        @default(ACTIVE)
+  // roomsSent      Room[]     @relation("SenderRelation")
+  // roomsReceived  Room[]     @relation("ReceiverRelation")
+  // chatsSent      Chat[]     @relation("SenderRelation")
+  // chatsReceived  Chat[]     @relation("ReceiverRelation")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  RoomParticipant RoomParticipant[]
+  Chat            Chat[]
 
   @@map("Users")
 }
-
 
 model Price {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -68,16 +73,89 @@ model PaymentInfo {
   @@map("paymentInfos")
 }
 
-model Chat{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+// model Chat{
+//   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  senderId   String
-  receiverId String
-  message    String
-  createdAt  DateTime @default(now())
+//   senderId   String
+//   receiverId String
+//   message    String
+//   createdAt  DateTime @default(now())
 
-  @@map("chats")
+//   @@map("chats")
+// }
+
+// model Chat {
+//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
+//   senderId   String   @db.ObjectId
+//   receiverId String   @db.ObjectId
+//   message    String
+//   roomId     String   @db.ObjectId
+//   images     String[]
+//   isRead     Boolean  @default(false)
+//   createdAt  DateTime @default(now())
+//   updatedAt  DateTime @updatedAt
+//   sender     User     @relation("SenderRelation", fields: [senderId], references: [id])
+//   receiver   User     @relation("ReceiverRelation", fields: [receiverId], references: [id])
+//   room       Room     @relation(fields: [roomId], references: [id])
+
+//   @@map("chats")
+// }
+
+// model Room {
+//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
+//   senderId   String   @db.ObjectId
+//   receiverId String   @db.ObjectId
+//   createdAt  DateTime @default(now())
+//   updatedAt  DateTime @updatedAt
+//   sender     User     @relation("SenderRelation", fields: [senderId], references: [id])
+//   receiver   User     @relation("ReceiverRelation", fields: [receiverId], references: [id])
+//   chat       Chat[]
+
+//   @@map("rooms")
+// }
+
+model Room {
+  id           String            @id @default(auto()) @map("_id") @db.ObjectId
+  senderId     String?           @db.ObjectId
+  receiverId   String?           @db.ObjectId
+  type         RoomType          @default(PRIVATE)
+  participants RoomParticipant[]
+  chats        Chat[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
 }
+
+model RoomParticipant {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId String   @db.ObjectId
+  roomId String   @db.ObjectId
+  role   UserRole @default(USER) // USER or ADMIN
+
+  user      User     @relation(fields: [userId], references: [id])
+  room      Room     @relation(fields: [roomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, roomId])
+}
+
+model Chat {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  senderId String @db.ObjectId
+  roomId   String @db.ObjectId
+  message  String
+  sender   User   @relation(fields: [senderId], references: [id])
+
+  room      Room     @relation(fields: [roomId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RoomType {
+  PRIVATE
+  GROUP
+}
+
 enum UserRole {
   ADMIN
   ARTIST
