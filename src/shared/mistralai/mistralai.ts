@@ -3,7 +3,7 @@ import { Mistral } from '@mistralai/mistralai';
 const apiKey = "Xg47haGtcYpHLGOqG9Iysp23Esl2tvp6";
 export const mistralai =async()=>{
   const client = new Mistral({apiKey: apiKey});
-
+// test mistral large latest model
   const chatResponse:any = await client.chat.complete({
     model: 'mistral-large-latest',
     messages: [{role: 'user', content: 'tell me 5 august 2024 of bangladesh'}],
