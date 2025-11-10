@@ -26,3 +26,4 @@ lib-cov
 coverage
 *.lcov
 
+.env
