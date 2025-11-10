@@ -5,6 +5,7 @@ import path from 'path';
 function capitalize(text: string): string {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+// sdfasfa
 
 // Function to generate a comment based on the file name
 function getFileComment(fileName: string): string {
