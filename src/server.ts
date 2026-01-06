@@ -6,14 +6,18 @@ import prisma from "./shared/prisma";
 import app from "./app";
 import oneToOne from "./shared/chat/oneToOne";
 import { initializeWebSocketServer } from "./shared/websocket/massage";
+import { getBalance } from "./shared/cheackBalance";
+import redisClient from "./redis";
 
 
 let server: Server;
 let io: SocketIOServer;
 
 async function startServer() {
-  server = app.listen(config.port, () => {
+  server = app.listen(config.port, async () => {
     console.log("Server is listening on port ", config.port);
+    await redisClient.connect();
+ 
   });
 
  
@@ -45,17 +49,17 @@ async function main() {
     if (server) {
       server.close(() => {
         console.info("Server closed!");
-        restartServer();
+        // restartServer();
       });
     } else {
       process.exit(1);
     }
   };
 
-  const restartServer = () => {
-    console.info("Restarting server...");
-    main();
-  };
+  // const restartServer = () => {
+  //   console.info("Restarting server...");
+  //   main();
+  // };
 
   process.on("uncaughtException", (error) => {
     console.log("Uncaught Exception: ", error);

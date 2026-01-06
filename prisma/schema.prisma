@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -19,7 +19,14 @@ model User {
   customerId String?
   subscriptionId String?
   isPayment Boolean @default(false)
-  priceId String?
+  priceId String? @db.ObjectId
+  // relation to selected Price (nullable)
+  price Price? @relation(fields: [priceId], references: [id])
+  // payments made by the user
+  payments PaymentInfo[]
+  // chats
+  chatsSent Chat[] @relation("ChatSender")
+  chatsReceived Chat[] @relation("ChatReceiver")
   planName String?
   otp           Int?
   password      String
@@ -48,11 +55,16 @@ model Price {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
+  // users subscribed / linked to this price
+  users User[]
+
   @@map("prices")
 }
 
 model PaymentInfo {
   id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String?   @db.ObjectId
+  user               User?     @relation(fields: [userId], references: [id])
   userEmail          String?
   subscriptionPlane  String?
   subscriptionId     String?
@@ -70,10 +82,11 @@ model PaymentInfo {
 
 model Chat{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-
-  senderId   String
-  receiverId String
+  senderId   String @db.ObjectId
+  receiverId String @db.ObjectId
   message    String
+  sender     User   @relation("ChatSender", fields: [senderId], references: [id])
+  receiver   User   @relation("ChatReceiver", fields: [receiverId], references: [id])
   createdAt  DateTime @default(now())
 
   @@map("chats")

@@ -12,6 +12,7 @@ import { Request } from "express";
 import { fileUploader } from "../../../helpars/fileUploader";
 import { jwtHelpers } from "../../../helpars/jwtHelpers";
 import { Secret } from "jsonwebtoken";
+import redisClient from "../../../redis";
 
 // Create a new user in the database.
 const createUserIntoDb = async (payload: User) => {
@@ -224,11 +225,31 @@ const updateUserIntoDb = async (payload: IUser, id: string) => {
   return result;
 };
 
+const setRedis=async()=>{
+  await redisClient.d
+await redisClient.set('users', JSON.stringify({name: 'Hasan', age:60, country:'Bangladesh'}));
+await redisClient.set('foo', JSON.stringify({name: 'Hasan', age:60, country:'Bangladesh'}));
+const value = await redisClient.get('users');
+return value;
+}
 
+const getRedis=async()=>{
+const value = await redisClient.get('foo');
+await redisClient.del('*');
+const parsedValue = JSON.parse(value || '{}');
+console.log(parsedValue.name);
+
+console.log(await redisClient.get("users"));
+return JSON.parse(value || '{}');
+
+
+}
 
 export const userService = {
   createUserIntoDb,
   getUsersFromDb,
   updateProfile,
   updateUserIntoDb,
+  setRedis
+  ,getRedis
 };

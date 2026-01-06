@@ -59,10 +59,31 @@ const id = req.params.id;
     data: result,
   });
 });
+const setRedis = catchAsync(async (req: Request, res: Response) => {
+const id = req.params.id;
+  const result = await userService.setRedis();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "redis set successfully!",
+    data: result,
+  });
+});
+const getRedis = catchAsync(async (req: Request, res: Response) => {
+const id = req.params.id;
+  const result = await userService.getRedis();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "redis get successfully!",
+    data: result,
+  });
+});
 
 export const userController = {
   createUser,
   getUsers,
   updateProfile,
-  updateUser
+  updateUser,
+  setRedis,getRedis
 };

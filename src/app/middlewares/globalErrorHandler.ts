@@ -25,8 +25,10 @@ interface ErrorLog {
 }
 
 const saveErrorToFile = (logObj: ErrorLog) => {
+  console.log(__dirname)
   const logsDir = path.join(__dirname, '../logs');
   const logPath = path.join(logsDir, 'errors.log');
+  console.log({logsDir, logPath})
 
   // 🛡️ Ensure the logs directory exists
   if (!fs.existsSync(logsDir)) {
@@ -110,7 +112,6 @@ const GlobalErrorHandler = (
     message = "An unexpected error occurred!";
     errorSources.push("Unknown Error");
   }
-console.log("Error:///////////////////////////////////////////////////////////////////////////////////////////////////////////")
   // ✅ Log error to file
   const errorLog = {
     time: new Date().toISOString(),

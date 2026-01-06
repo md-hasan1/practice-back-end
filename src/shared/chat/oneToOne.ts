@@ -28,7 +28,7 @@ const oneToOne = (socket: Socket) => {
         data: {
           message,
           senderId,
-          receiverId,
+          receiverId
         },
       });
 
