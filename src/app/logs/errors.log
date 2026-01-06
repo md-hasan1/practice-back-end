@@ -1,28 +1,79 @@
-[2025-04-06T10:09:15.363Z] 403 - GET /favicon.ico - This is a forbidden error!
+[2025-12-22T03:48:49.512Z] 401 - GET /api/v1/users - You are not authorized!
 User: Unauthenticated
-Stack: Error: This is a forbidden error!
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:39:9
+Stack: Error: You are not authorized!
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:21:15
     at Generator.next (<anonymous>)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:8:71
     at new Promise (<anonymous>)
-    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:37:37
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at __awaiter (C:\project\my\practice-back-end\src\app\middlewares\auth.ts:4:12)
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:16:7
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+
+[2025-12-22T03:49:38.416Z] 401 - GET /api/v1/users - You are not authorized!
+User: Unauthenticated
+Stack: Error: You are not authorized!
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:21:15
     at Generator.next (<anonymous>)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\project\my\practice-back-end\src\app\middlewares\auth.ts:4:12)
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:16:7
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+
+[2025-12-22T03:51:10.915Z] 401 - GET /api/v1/users - You are not authorized!
+User: Unauthenticated
+Stack: Error: You are not authorized!
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:21:15
+    at Generator.next (<anonymous>)
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\project\my\practice-back-end\src\app\middlewares\auth.ts:4:12)
+    at C:\project\my\practice-back-end\src\app\middlewares\auth.ts:16:7
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\project\my\practice-back-end\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\project\my\practice-back-end\node_modules\express\lib\router\layer.js:95:5)
+
+[2025-12-22T05:19:57.293Z] 400 - GET /api/v1/users/redis - Type error in the application. Please verify your input.
+User: Unauthenticated
+Stack: TypeError: redis_1.default.find is not a function
+    at C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:237:33
+    at Generator.next (<anonymous>)
+    at C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:27:12)
+    at Object.getRedis (C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:235:25)
+    at C:\project\my\practice-back-end\src\app\modules\User\user.controller.ts:74:36
+    at Generator.next (<anonymous>)
+    at C:\project\my\practice-back-end\src\app\modules\User\user.controller.ts:8:71
     at new Promise (<anonymous>)
 
-[2025-04-06T10:09:50.432Z] 403 - GET /favicon.ico - This is a forbidden error!
+[2025-12-22T05:21:03.832Z] 400 - GET /api/v1/users/redis - Type error in the application. Please verify your input.
 User: Unauthenticated
-Stack: Error: This is a forbidden error!
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:39:9
+Stack: TypeError: redis_1.default.find is not a function
+    at C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:237:33
     at Generator.next (<anonymous>)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:8:71
+    at C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:31:71
     at new Promise (<anonymous>)
-    at __awaiter (C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:4:12)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\app.ts:37:37
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:6:19
+    at __awaiter (C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:27:12)
+    at Object.getRedis (C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:235:25)
+    at C:\project\my\practice-back-end\src\app\modules\User\user.controller.ts:74:36
     at Generator.next (<anonymous>)
-    at C:\Users\bdCailling\Desktop\my\practice-back-end\src\shared\catchAsync.ts:8:71
+    at C:\project\my\practice-back-end\src\app\modules\User\user.controller.ts:8:71
     at new Promise (<anonymous>)
+
+[2025-12-22T05:30:56.801Z] 400 - GET /api/v1/users/redis - Syntax error in the request. Please verify your input.
+User: Unauthenticated
+Stack: SyntaxError: Unexpected token 'b', "bar" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:238:26
+    at Generator.next (<anonymous>)
+    at fulfilled (C:\project\my\practice-back-end\src\app\modules\User\user.services.ts:28:58)
+    at processTicksAndRejections (node:internal/process/task_queues:103:5)
 

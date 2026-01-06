@@ -15,7 +15,7 @@ router
     validateRequest(UserValidation.CreateUserValidationSchema),
     userController.createUser
   )
-  .get("/", userController.getUsers)
+  .get("/",auth(), userController.getUsers)
   .put("/:id", userController.updateUser)
   .patch(
     "/profile",
@@ -24,6 +24,9 @@ router
     fileUploader.uploadSingle,
     userController.updateProfile
   );
+
+
+  router.route("/redis", ).post(userController.setRedis).get( userController.getRedis);
 // *!get all  user
 // router.get("/", userController.getUsers);
 
