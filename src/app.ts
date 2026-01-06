@@ -3,11 +3,12 @@ import axios from "axios";
 import httpStatus from "http-status";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import catchAsync from "./shared/catchAsync";
+import router from "./app/routes";
+import GlobalErrorHandler from "./app/middlewares/globalErrorHandler";
 
 
-import GlobalErrorHandler from "./src/app/middlewares/globalErrorHandler";
-import catchAsync from "./src/shared/catchAsync";
-import router from "./src/app/routes";
+
 
 const app: Application = express();
 export const corsOptions = {
@@ -23,23 +24,19 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.set("view engine", "ejs");
 
+app.set("views", "./src/views");
 // Route handler for root endpoint
 app.get("/", (req: Request, res: Response) => {
-  res.send({
-    success: true,
-    statusCode: httpStatus.OK,
-    message: "The server is running!",
-  });
+res.render("index.ejs");
 });
 
-app.use(catchAsync(async (req,res)=>{
-  console.log("Hello Hasan!");
-  //throw new ApiError(httpStatus.FORBIDDEN, "This is a forbidden error!");
-}))
 // Router setup
 app.use("/api/v1", router);
-
+app.use("/api/v2",(req,res)=>{
+  res.render("test/page.ejs");
+})
 
 
 // Error handling middleware
